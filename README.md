@@ -1,5 +1,5 @@
 ---
-title: Ai Chatbot with Conversational Memory
+title: BMCCHK Regligion Lesson Bot
 emoji: 🔥
 colorFrom: indigo
 colorTo: gray
