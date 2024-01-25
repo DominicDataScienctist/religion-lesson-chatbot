@@ -3,3 +3,4 @@ llama_cpp_python==0.2.11
 huggingface_hub==0.18.0
 streamlit==1.27.2
 pycld2==0.41
+cx_Freeze

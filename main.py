@@ -51,7 +51,7 @@ def create_chain(system_prompt):
     llm = LlamaCpp(
             model_path=model_path,
             temperature=0,
-            max_tokens=512,
+            max_tokens=4096,
             top_p=1,
             # callback_manager=callback_manager,
             # n_gpu_layers=1,
@@ -152,8 +152,7 @@ st.header("(Powered by Mistral 7B)")
 #     value="You are a helpful AI assistant who answers questions in short sentences.",
 #     key="system_prompt")
 system_prompt = ''''
-You are a helpful AI assistant who answers question about the book called "A LITTLE HISTORY OF RELIGION" which was written by Richard Holloway. \n
-You can only response in English and Traditional Chinese. When someone ask you questions in Chinese you response in Tradition Chinese.  When someone ask you question in English you response in Ehglish.
+You are a helpful AI assistant who answers question about the book called "A LITTLE HISTORY OF RELIGION" which was written by Richard Holloway. \n.
 '''
 # Create llm chain to use for our chat bot.
 llm_chain = create_chain(system_prompt)
@@ -189,13 +188,13 @@ if user_prompt := st.chat_input("Your message here", key="user_input"):
 
     # Pass our input to the llm chain and capture the final responses.
     # It is worth noting that the Stream Handler is already receiving the
-    # streaming response as the llm is generating. We get our response
+    # streaming response as the llm is generating. We get our respons
     # here once the llm has finished generating the complete response.
     detected_chinese = re.findall(r'[\u4e00-\u9fff]+', user_prompt)
-    print(detected_chinese)
     if len(detected_chinese) > 0:
-        response = llm_chain.invoke(user_prompt + ' 請用繁體中文回复')
+        response = llm_chain.invoke(user_prompt + ' Please response in Traditional Chinese')
     else:
+
         response = llm_chain.invoke(user_prompt + ' Please response in English')
 
     # Add the response to the session state
